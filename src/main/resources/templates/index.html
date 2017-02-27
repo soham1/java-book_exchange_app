@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" class="bg">
+<head lang="en" th:replace="header :: header">
+</head>
+<body>
+	<div class="container" th:if="${user != null}">
+		<form action="/selectBooksRequested" method="POST"
+			id="selectBooksForm">
+			<input type="hidden" th:name="${_csrf.parameterName}"
+				th:value="${_csrf.token}" />
+			<div class="row btnRow">
+				<div class="col s4"></div>
+				<div class="col s4">
+					<a th:if="${user != null}"
+						class="waves-effect waves-light btn mainBtn" id="requestBooks">Request
+						Books</a>
+				</div>
+				<div class="col s4"></div>
+			</div>
+
+			<div class="row" th:each="row : ${book2d}">
+				<div class="col s4" th:each="book : ${row}">
+					<div class="card book">
+						<div class="card-image">
+							<img class="activator poster" th:src="${book.poster}"></img>
+							<p class="box">
+								<input type="checkbox" class="filled-in" th:id="${book.id}"
+									th:value="${book.id}" name="bookIds" /> <label
+									th:for="${book.id}"></label>
+							</p>
+						</div>
+						<div class="card-content">
+							<span th:text="${book.name}"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+	<div class="section no-pad-bot" id="index-banner"
+		th:if="${user == null}">
+		<div class="container">
+			<br>
+			</br>
+			<h1 class="header center red-text">Book Exchange</h1>
+			<div class="row center">
+				<h5 class="header col s12 light">Trade books with one another!</h5>
+			</div>
+			<div class="row center">
+				<a href="/login"
+					class="btn-large waves-effect waves-light blue">Login</a>
+			</div>
+			<br>
+			</br>
+
+		</div>
+	</div>
+
+	<div lang="en" th:replace="footer :: footer"></div>
+</body>
+</html>

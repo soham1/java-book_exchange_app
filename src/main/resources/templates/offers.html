@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en" th:replace="header :: header">
+</head>
+<body>
+	<h3>Outgoing Offers</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="offer : ${myOffers}">
+				<td>
+					<ul>
+						<li th:each="bookOffer : ${offer.bookOffers}">
+							<span th:text="${bookOffer.book.name}"></span>
+							(Owner: <span th:text="${bookOffer.book.user.name}"></span>)
+						</li>
+					</ul>
+				</td>
+				<td>
+					<a class="waves-effect red waves-light btn delete" th:href="${'/deleteOffer/'+ offer.id}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	<h3>Incoming Offers</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="offer : ${othersOffers}">
+				<td>
+					<ul>
+						<li th:each="bookOffer : ${offer.bookOffers}">
+							<span th:text="${bookOffer.book.name}"></span>
+							(Owner: <span th:text="${bookOffer.book.user.name}"></span>)
+						</li>
+					</ul>
+				</td>
+				<td>
+					<a class="waves-effect green waves-light btn accept" th:href="${'/deleteOffer/'+ offer.id}">Accept</a>
+					<a class="waves-effect red waves-light btn decline" th:href="${'/deleteOffer/'+ offer.id}">Decline</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div lang="en" th:replace="footer :: footer"></div>
+</body>
+</html>
