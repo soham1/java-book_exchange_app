@@ -20,6 +20,10 @@ An application which allows users to make offers and trade books.
 
 <img src="screenshots/offers.PNG">
 
+##Demo
+
+[![ScreenShot](screenshots/video.PNG)](https://www.youtube.com/watch?v=65AEq4KyrOg)
+
 ##Technologies Used:
 - Java
 - Spring MVC
