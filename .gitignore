@@ -1,4 +1,5 @@
 target/
+<<<<<<< HEAD
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -22,3 +23,13 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+=======
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+>>>>>>> ee1ee1ebd55a900ba5fcf0b5d8a4739d4e0c76ba
