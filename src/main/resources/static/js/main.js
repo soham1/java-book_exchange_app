@@ -1,47 +1,62 @@
-$(function () {
+$(function() {
 
-	$('#requestBooks').click(function(){
+	$('#requestBooks').click(function() {
 		$('#selectBooksForm').submit();
 	});
-	
-	$('#offerBooks').click(function(){
+
+	$('#offerBooks').click(function() {
 		$('#offerBooksForm').submit();
 	});
-	
-	$('#selectBooksForm').on('submit', function(e){
-		var none = true;
-		$(".filled-in").each(function(i, e){
-	    	if(e.checked) {
-	    		none = false;
-	    		return true;
-	    	} 
-	    });
 
-		if(none){
-	    	e.preventDefault();
-	    	var $toastContent = $('<span>Please select one book!</span>');
-	    	Materialize.toast($toastContent, 5000);
-	    }
+	$('#addBook').click(function() {
+		$('#addBookForm').submit();
 	});
-	
-	$('#offerBooksForm').on('submit', function(e){
-		var none = true;
-		$(".filled-in").each(function(i, e){
-	    	if(e.checked) {
-	    		none = false;
-	    		return true;
-	    	} 
-	    });
 
-		if(none){
-	    	e.preventDefault();
-	    	var $toastContent = $('<span>Please select one book!</span>');
-	    	Materialize.toast($toastContent, 5000);
-	    }
+	$('#selectBooksForm').on('submit', function(e) {
+		var none = true;
+		$(".filled-in").each(function(i, e) {
+			if (e.checked) {
+				none = false;
+				return true;
+			}
+		});
+
+		if (none) {
+			e.preventDefault();
+			var $toastContent = $('<span>Please select one book!</span>');
+			Materialize.toast($toastContent, 5000);
+		}
 	});
-	
-	$('.slider').slider({indicators: false});
-	
+
+	$('#offerBooksForm').on('submit', function(e) {
+		var none = true;
+		$(".filled-in").each(function(i, e) {
+			if (e.checked) {
+				none = false;
+				return true;
+			}
+		});
+
+		if (none) {
+			e.preventDefault();
+			var $toastContent = $('<span>Please select one book!</span>');
+			Materialize.toast($toastContent, 5000);
+		}
+	});
+
+	$('#addBookForm').on('submit', function(e) {
+		if ($('#name').val() != "" && $('#author').val() != "" && $('#poster').val() != "") {
+			return;
+		} else {
+			e.preventDefault();
+			var $toastContent = $('<span>Please fill out all fields!</span>');
+			Materialize.toast($toastContent, 5000);
+		}
+	});
+
+	$('.slider').slider({
+		indicators : false
+	});
+
+	$('#bookModal').modal();
 });
-
-

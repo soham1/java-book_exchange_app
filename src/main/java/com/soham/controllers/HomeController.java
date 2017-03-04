@@ -122,7 +122,35 @@ public class HomeController {
 		request.getSession().invalidate();
 		return "redirect:/";
 	}
-
+	
+	@RequestMapping("/myBooks")
+	public String myBooks(HttpSession session, Model model){
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		List<Book> userBooks = bookRepository.findUserBooks(user.getName());
+		List<ArrayList<Book>> book2d = make2d(userBooks);
+		model.addAttribute("book2d", book2d);
+		model.addAttribute("user", user);
+		return "myBooks";
+	}
+	
+	@RequestMapping("/deleteBook/{bookId}")
+	public String deleteBook(@PathVariable(value = "bookId") Long bookId, HttpSession session, Model model){
+		List<Long> offerIds = bookOfferRepository.findByBookId(bookId);
+		offerRepository.deleteByIdIn(offerIds);
+		bookRepository.deleteById(bookId);
+		return "redirect:/myBooks";
+	}
+	
+	@RequestMapping(value="/addBook", method=RequestMethod.POST)
+	public String addBook(@RequestParam("name") String name, @RequestParam("author") String author, @RequestParam("poster") String poster, HttpSession session, Model model){
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		Book book = new Book(name, author, poster, user);
+		bookRepository.save(book);
+		return "redirect:/myBooks";
+	}
+	
 	public List<ArrayList<Book>> make2d(List<Book> books) {
 		double size = books.size();
 		int rows = (int) Math.ceil(size / 3.0);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.soham.models.Book;
 
@@ -18,5 +19,8 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
 	@Query("SELECT B FROM Book B WHERE B.user.name != :name")
 	List<Book> findOthersBooks(@Param("name") String name);
+	
+	@Transactional
+	void deleteById(Long id);
 	
 }

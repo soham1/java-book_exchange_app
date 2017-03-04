@@ -1,11 +1,15 @@
 package com.soham.models;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +35,9 @@ public class Book {
 	public Long getId() {
 		return id;
 	}
+	
+	@OneToMany(mappedBy="book", cascade=CascadeType.ALL)
+	private Set<BookOffer> bookOffers;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -68,10 +75,11 @@ public class Book {
 		this.poster = poster;
 	}
 
-	public Book(String name, String author, String poster) {
+	public Book(String name, String author, String poster, User user) {
         this.name = name;
         this.author = author;
         this.poster = poster;
+        this.user = user;
     }
 	
 	public Book() {}

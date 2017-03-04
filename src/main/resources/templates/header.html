@@ -9,7 +9,7 @@
 		<a href="/" class="brand-logo">Book Exchange</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			<li th:if="${user != null}"><a href="/offers">Offers</a></li>
-
+			<li th:if="${user != null}"><a href="/myBooks">My Books</a></li>
 			<li th:switch="${user}"><a th:case="null" href="/login">Login
 					with Github</a>
 

@@ -24,3 +24,21 @@
 	width: 200px;
 }
 
+.bookImg {
+	height: 300px !important;
+	width: 200px !important;
+}
+
+.error {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #E5F0F2; 
+}
+
+.errorImg {
+	padding-top: 10px;
+	display: block;
+    margin: 0 auto;
+    height: 550px
+}
+

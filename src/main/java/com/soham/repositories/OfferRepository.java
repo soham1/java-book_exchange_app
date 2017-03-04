@@ -2,11 +2,13 @@ package com.soham.repositories;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.soham.models.Book;
 import com.soham.models.Offer;
 
 public interface OfferRepository extends CrudRepository<Offer, Long>{
@@ -21,4 +23,11 @@ public interface OfferRepository extends CrudRepository<Offer, Long>{
 	
 	@Transactional
     Long deleteById(Long id);
+
+	@Query("SELECT DISTINCT O.id FROM Offer O JOIN O.bookOffers bo WHERE bo.book.id = :bookId")
+	List<Long> findByBookId(@Param("bookId") Long bookId);
+	
+	@Transactional
+	void deleteByIdIn(List<Long> offerIds);
+		
 }
